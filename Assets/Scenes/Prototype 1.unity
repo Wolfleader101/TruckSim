@@ -580,7 +580,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 807515678747503394, guid: 68840c673a0b18e41a044ed077548d55, type: 3}
+    - {fileID: 7112434088316406038, guid: 68840c673a0b18e41a044ed077548d55, type: 3}
+    - {fileID: 4496932289254986284, guid: 68840c673a0b18e41a044ed077548d55, type: 3}
+    - {fileID: 5577659831359136293, guid: 68840c673a0b18e41a044ed077548d55, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 68840c673a0b18e41a044ed077548d55, type: 3}
 --- !u!1 &217403407 stripped
 GameObject:
@@ -1032,9 +1036,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255c1b609f25604dac95540c25b5bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MotorForce: 10000
-  SteerForce: 1000
-  BrakeForce: 10000
+  MotorForce: 2500
+  SteerForce: 100
+  BrakeForce: 5000
   friction: 200
   FR_L_Wheel: {fileID: 217403409}
   FR_R_Wheel: {fileID: 1443738365}
@@ -1059,7 +1063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cbfb69921fb674fa327ed3dfbd3cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CentreOfMass2: {x: 0, y: 0.47, z: 0}
+  CentreOfMass2: {x: 0, y: 0.66, z: 0}
   awake: 0
 --- !u!1001 &460197671
 PrefabInstance:
