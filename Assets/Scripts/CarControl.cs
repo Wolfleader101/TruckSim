@@ -6,7 +6,7 @@ using UnityEngine;
 public class CarControl : MonoBehaviour
 {
 
-    public float MotorForce, SteerForce, BrakeForce, friction;
+    public float MotorForce, SteerForce, BrakeForce;
 
     public WheelCollider FR_L_Wheel, FR_R_Wheel, RE_L_Wheel, RE_R_Wheel;
     public GameObject car;
@@ -35,7 +35,7 @@ public class CarControl : MonoBehaviour
     
     private void Steer()
     {
-        steeringAngle = SteerForce * horizontalInput;
+        steeringAngle = SteerForce * Time.deltaTime * horizontalInput;
         FR_L_Wheel.steerAngle = steeringAngle;
         FR_R_Wheel.steerAngle = steeringAngle;
     }
