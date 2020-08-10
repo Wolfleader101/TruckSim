@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class CarControl : MonoBehaviour
 {
+    private AudioSource startSound;
+    private AudioSource drivingSound;
 
     public float MotorForce, SteerForce, BrakeForce;
 
@@ -15,11 +18,31 @@ public class CarControl : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        startSound = gameObject.AddComponent<AudioSource>();
+        drivingSound = gameObject.AddComponent<AudioSource>();;
+        
+        startSound.clip = Resources.Load("Sounds/CarStart") as AudioClip;
+        drivingSound.clip = Resources.Load("Sounds/CarDrive") as AudioClip;
+        drivingSound.time = 2f;
+        
+       startSound.Play();
+    }
+    
     public void GetInput()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        
+
+        if (verticalInput > 0 && !drivingSound.isPlaying)
+        {
+            drivingSound.Play();
+            StartCoroutine(StopSound(5f));
+        }
+
         if (Input.GetKey(KeyCode.Space))
         {
             RE_L_Wheel.brakeTorque = BrakeForce;
@@ -32,6 +55,12 @@ public class CarControl : MonoBehaviour
             RE_R_Wheel.brakeTorque = 0;
         }
     }
+
+    IEnumerator StopSound(float time)
+    {
+        yield return new WaitForSeconds(time);
+        drivingSound.Stop();
+    }
     
     private void Steer()
     {
@@ -42,6 +71,7 @@ public class CarControl : MonoBehaviour
     
     private void Accelerate()
     {
+        
         RE_L_Wheel.motorTorque = verticalInput * MotorForce;
         RE_R_Wheel.motorTorque = verticalInput * MotorForce;
     }
@@ -53,20 +83,15 @@ public class CarControl : MonoBehaviour
         RE_R_Wheel.ConfigureVehicleSubsteps(50,50,50);
         RE_L_Wheel.ConfigureVehicleSubsteps(50,50,50);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+        GetInput();
     }
 
     private void FixedUpdate()
     {
-        GetInput();
         Steer();
         Accelerate();
     }
