@@ -29,7 +29,7 @@ public class CarControl : MonoBehaviour
         drivingSound.clip = Resources.Load("Sounds/CarDrive") as AudioClip;
         drivingSound.time = 2f;
         
-       startSound.Play();
+      // startSound.Play();
     }
     
     public void GetInput()
@@ -39,8 +39,8 @@ public class CarControl : MonoBehaviour
 
         if (verticalInput > 0 && !drivingSound.isPlaying)
         {
-            drivingSound.Play();
-            StartCoroutine(StopSound(5f));
+            //drivingSound.Play();
+            StartCoroutine(StopSound(5f)); // lol - cant believe i coded this
         }
 
         if (Input.GetKey(KeyCode.Space))

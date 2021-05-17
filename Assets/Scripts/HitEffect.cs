@@ -23,7 +23,7 @@ public class HitEffect : MonoBehaviour
 
     void BloodEffect()
     {
-        GameObject blood = Instantiate(bloodFX, this.transform.position, this.transform.rotation);
+        GameObject blood = Instantiate(bloodFX, this.transform.position, transform.rotation);
         blood.GetComponent<ParticleSystem>().Play();
     }
     // Update is called once per frame
